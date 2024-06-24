@@ -24,7 +24,10 @@ void main() {
   var list2 = []; // Empty List
   list2.add(1); // Add to list
   list2.addAll([1, 2, 3]); // Add multiple item to list
-  list2.add([4, [5]]); // Add list inside list
+  list2.add([
+    4,
+    [5]
+  ]); // Add list inside list
   list2.insert(2, "Insert at Position"); // Insert at specific position
   list2.insertAll(3, [1, 2, 3]); // Insert multiple at specific position
   list2.remove("Insert at Position"); // Removes item by statement
@@ -51,5 +54,18 @@ void main() {
     print(map1["$counter"]);
     counter++;
   }
+}
 
+// Classes
+
+class Person {
+  String? name, sex;
+  int? age;
+
+  // Constructors
+  Person(String name, sex, int age) {
+    this.name = name;
+    this.sex = sex;
+    this.age = age;
+  }
 }
