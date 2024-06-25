@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:flutter_svg/flutter_svg.dart";
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -10,35 +9,47 @@ class Homepage extends StatelessWidget {
     const lightgrayColor = Color.fromARGB(255, 245, 245, 245);
     return Scaffold(
       appBar: appBar(primaryColor, lightgrayColor),
-      body:
-        Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
-              decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.11),
-                    blurRadius: 40,
-                    spreadRadius: 0.0
-                  )
-                ]
-              ),
-              child: TextField(
-                decoration: InputDecoration(
+      body: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(top: 40, left: 20, right: 20),
+            decoration: BoxDecoration(boxShadow: [
+              BoxShadow(
+                  color: Colors.black.withOpacity(0.11),
+                  blurRadius: 40,
+                  spreadRadius: 0.0)
+            ]),
+            child: TextField(
+              decoration: InputDecoration(
+                prefixIcon: IconButton(
+                onPressed: (){
+                  print("Hello World");
+                },
+                icon: const Icon(Icons.search, size: 20)),
+                suffixIcon: IconButton(
+                  onPressed: (){
+                    print("Hello World");
+                  },
+                  icon: const Icon(Icons.filter_list_rounded, size: 20)),
                   filled: true,
                   fillColor: Colors.white,
-                  contentPadding: EdgeInsets.all(15),
+                  contentPadding: const EdgeInsets.all(15),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(15),
                     borderSide: BorderSide.none,
                   ),
-                ),
               ),
             ),
-          ],
-        ),
+          ),
+          Container(
+          ),
+        ],
+      ),
     );
+  }
+
+  void something() {
+    print("Hello Flutter");
   }
 
   AppBar appBar(Color primaryColor, lightgrayColor) {
@@ -63,11 +74,11 @@ class Homepage extends StatelessWidget {
             color: lightgrayColor,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: SvgPicture.asset(
-            'assets/icons/back.svg',
-            height: 20,
-            width: 20,
-          ),
+          child: IconButton(
+              onPressed: (){
+                print("Hello World");
+              },
+              icon: const Icon(Icons.arrow_back_ios_outlined, size: 15)),
         ),
       ),
 
@@ -83,11 +94,11 @@ class Homepage extends StatelessWidget {
               color: lightgrayColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: SvgPicture.asset(
-              'assets/icons/three-dots.svg',
-              height: 20,
-              width: 20,
-            ),
+            child: IconButton(
+              onPressed: (){
+                print("Hello World");
+              },
+              icon: const Icon(Icons.more_horiz, size: 15)),
           ),
         ),
       ],
