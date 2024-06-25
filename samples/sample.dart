@@ -45,6 +45,7 @@ void main() {
     // print(map1["$i"]);
   }
   // For in loops
+  // ignore: unused_local_variable
   for (var items in list1) {
     // print(items);
   }
@@ -54,6 +55,9 @@ void main() {
     print(map1["$counter"]);
     counter++;
   }
+
+  Person p1 = Person("Clark", "Male", 22);
+  p1.printName();
 }
 
 // Classes
@@ -63,9 +67,9 @@ class Person {
   int? age;
 
   // Constructors
-  Person(String name, sex, int age) {
-    this.name = name;
-    this.sex = sex;
-    this.age = age;
+  Person(String this.name, this.sex, int this.age);
+
+  void printName() {
+    print(name);
   }
 }
