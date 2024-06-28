@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world/pages/home.dart';
+import 'app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +14,11 @@ class MyApp extends StatelessWidget {
     const primaryColor = Color.fromARGB(255, 59, 149, 177);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Poppins', primaryColor: primaryColor, scaffoldBackgroundColor: Colors.white),
-      home: const Homepage(),
+      theme: ThemeData(
+          fontFamily: 'Poppins',
+          primaryColor: primaryColor,
+          scaffoldBackgroundColor: Colors.white),
+      home: MyHome(),
     );
   }
 }
