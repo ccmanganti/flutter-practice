@@ -6,7 +6,8 @@ import 'postList.dart';
 import 'textInputWidget.dart';
 
 class MyHome extends StatefulWidget {
-  const MyHome({super.key});
+  final String name;
+  const MyHome({super.key, required this.name});
 
   @override
   State<MyHome> createState() => _MyHomeState();
@@ -17,7 +18,7 @@ class _MyHomeState extends State<MyHome> {
 
   void newPost(text) {
     this.setState(() {
-      posts.add(new Post(text, "Clark"));
+      posts.add(new Post(text, widget.name));
     });
   }
 

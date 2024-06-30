@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'app.dart';
+import 'package:hello_world/login.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Poppins',
           primaryColor: primaryColor,
           scaffoldBackgroundColor: Colors.white),
-      home: MyHome(),
+      home: LoginPage(),
     );
   }
 }
