@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:hello_world/auth.dart';
+import 'package:hello_world/database.dart';
+import 'package:hello_world/login.dart';
 
 class TextInputWidget extends StatefulWidget {
   final Function(String) callback;
@@ -10,6 +12,7 @@ class TextInputWidget extends StatefulWidget {
 }
 
 class _TextInputWidgetState extends State<TextInputWidget> {
+  final AuthService _authService = AuthService();
   final controller = TextEditingController();
   String text = "";
 
@@ -26,17 +29,27 @@ class _TextInputWidgetState extends State<TextInputWidget> {
     FocusScope.of(context).unfocus();
   }
 
+  Future<void> _signOutWithGoogle() async {
+    await _authService.signOut();
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
-        controller: this.controller,
-        // onChanged: (text) => this.changeText(text),
-        decoration: InputDecoration(
-            prefixIcon: const Icon(
-              Icons.message,
-            ),
-            labelText: "Your Message",
-            suffixIcon:
-                IconButton(onPressed: clickButton, icon: Icon(Icons.send))));
+    return Column(
+      children: [
+        ElevatedButton(onPressed: _signOutWithGoogle, child: Text("Sign out")),
+        TextField(
+            controller: this.controller,
+            // onChanged: (text) => this.changeText(text),
+            decoration: InputDecoration(
+                prefixIcon: const Icon(
+                  Icons.message,
+                ),
+                labelText: "Your Message",
+                suffixIcon: IconButton(
+                    onPressed: clickButton, icon: Icon(Icons.send)))),
+      ],
+    );
   }
 }

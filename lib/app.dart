@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'post.dart';
+import 'database.dart';
 import 'postList.dart';
 import 'textInputWidget.dart';
 
@@ -16,9 +17,25 @@ class MyHome extends StatefulWidget {
 class _MyHomeState extends State<MyHome> {
   List<Post> posts = [];
 
+  @override
+  void initState() {
+    super.initState();
+    _listPosts();
+  }
+
+  void _listPosts() async {
+    List<Post> loadedPosts = await PostService.readPosts();
+    this.setState(() {
+      posts = loadedPosts;
+    });
+  }
+
   void newPost(text) {
     this.setState(() {
-      posts.add(new Post(text, widget.name));
+      Post newPost =
+          new Post(text, getCurrentUser().displayName.toString(), {});
+      newPost.setId(savePost(newPost));
+      posts.add(newPost);
     });
   }
 

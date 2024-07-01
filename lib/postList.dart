@@ -1,5 +1,13 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'post.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+User getCurrentUser() {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User user = auth.currentUser!;
+    return user;
+  }
 
 class PostList extends StatefulWidget {
   const PostList({super.key, required this.listItems});
@@ -11,11 +19,21 @@ class PostList extends StatefulWidget {
 }
 
 class _PostListState extends State<PostList> {
-  // void liked(Function callback) {
-  //   this.setState(() {
-  //     callback();
-  //   });
-  // }
+  void liked(Function callback) {
+    this.setState(() {
+      callback();
+    });
+  }
+
+
+
+  bool userLiked(User user, Post post) {
+    if (post.likes.contains(user.uid)) {
+      return true;
+    }
+    return false;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +52,15 @@ class _PostListState extends State<PostList> {
               Row(
                 children: [
                   Container(
-                    child: Text(post.likes.toString()),
+                    child: Text(post.likes.length.toString()),
                   ),
                   IconButton(
                       onPressed: () => {
                             setState(() {
-                              post.likePost();
+                              post.likePost(getCurrentUser());
                             })
                           },
-                      color: post.userLiked ? Colors.blue : Colors.black,
+                      color: userLiked(getCurrentUser(), post) ? Colors.blue : Colors.black,
                       icon: Icon(Icons.thumb_up))
                 ],
               )
